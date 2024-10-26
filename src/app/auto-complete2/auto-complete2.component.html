@@ -1,0 +1,15 @@
+<form [formGroup]="form">
+  
+  <mat-form-field class="example-full-width">
+    <mat-label>Nome</mat-label>
+    <input type="text" matInput formControlName="nomeCompleto" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn.bind(this)"> 
+      @for (option of filteredOptions | async; track option) {
+        <mat-option [value]="option.id">{{option.nome}}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+<pre>
+  {{form.value | json}}
+</pre>
